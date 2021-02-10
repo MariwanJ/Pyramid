@@ -14,7 +14,7 @@
    viewBox="0 0 101.08743 101.08743"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="tetrahedron.svg">
   <defs
      id="defs2" />
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="13.269162"
-     inkscape:cx="8.9139594"
-     inkscape:cy="76.497054"
+     inkscape:zoom="1.6586453"
+     inkscape:cx="-59.82216"
+     inkscape:cy="50.765036"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,9 +36,9 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:window-width="1920"
-     inkscape:window-height="1027"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -58,12 +58,12 @@
      id="layer1"
      transform="translate(-47.23081,-96.250299)">
     <path
-       style="fill:#000099;fill-opacity:1;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       style="fill:#ef9b3a;fill-opacity:1;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
        d="M 53.106534,179.9856 85.960576,156.58272 99.237209,103.02613 Z"
        id="path882"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:#6666ff;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#ffff67;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
        d="M 142.2175,182.91096 99.237209,103.02613 85.960576,156.58272 Z"
        id="path884"
        inkscape:connector-curvature="0" />
@@ -75,7 +75,7 @@
        x="47.25581"
        y="96.275299" />
     <path
-       style="fill:#000050;fill-opacity:1;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#cce51b;fill-opacity:1;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 53.106534,179.9856 85.960576,156.58272 142.2175,182.91096 Z"
        id="path896"
        inkscape:connector-curvature="0" />
