@@ -230,12 +230,12 @@ class Pyramid:
 				sidescount, radius_top, height, anglez)
 
 			if radius_bottom != 0:
-				polygon_bottom = Part.makePolygon(vertexes_bottom)
-				face_bottom = Part.Face(polygon_bottom)
+				polygon_bottom = _part.makePolygon(vertexes_bottom)
+				face_bottom = _part.Face(polygon_bottom)
 				faces.append(face_bottom)
 			if radius_top != 0:
-				polygon_top = Part.makePolygon(vertexes_top)
-				face_top = Part.Face(polygon_top)
+				polygon_top = _part.makePolygon(vertexes_top)
+				face_top = _part.Face(polygon_top)
 				faces.append(face_top)
 
 			for i in range(sidescount):
@@ -248,14 +248,15 @@ class Pyramid:
 				else:
 					vertexes_side = [vertexes_bottom[i], vertexes_bottom[i+1],
 									 vertexes_top[i+1], vertexes_top[i], vertexes_bottom[i]]
-				polygon_side = Part.makePolygon(vertexes_side)
-				faces.append(Part.Face(polygon_side))
+				polygon_side = _part.makePolygon(vertexes_side)
+				faces.append(_part.Face(polygon_side))
 
-			shell = Part.makeShell(faces)
-			solid = Part.makeSolid(shell)
+			shell = _part.makeShell(faces)
+			solid = _part.makeSolid(shell)
 			obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v,App.ActiveDocument.ActiveObject)
+		#App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class PyramidCommand:
@@ -275,10 +276,9 @@ class PyramidCommand:
 		# obj.ViewObject.Proxy=0
 		App.ActiveDocument.recompute()
 		#Gui.SendMsgToActiveView("ViewFit")
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v,App.ActiveDocument.ActiveObject)
-		print("wrong module")
-
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
+		return
 	def IsActive(self):
 		if App.ActiveDocument == None:
 			return False
@@ -327,17 +327,18 @@ class Tetrahedron:
 		for i in range(3):
 			vertexes_side = [
 				vertexes_bottom[i], vertexes_bottom[i+1], vertexes_top[0], vertexes_bottom[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
-		polygon_bottom = Part.makePolygon(vertexes_bottom)
+		polygon_bottom = _part.makePolygon(vertexes_bottom)
 
-		faces.append(Part.Face(polygon_bottom))
-		shell = Part.makeShell(faces)
-		solid = Part.makeSolid(shell)
+		faces.append(_part.Face(polygon_bottom))
+		shell = _part.makeShell(faces)
+		solid = _part.makeSolid(shell)
 		obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class TetrahedronCommand:
@@ -356,8 +357,9 @@ class TetrahedronCommand:
 		ViewProviderBox(obj.ViewObject, "Tetrahedron")
 		# App.ActiveDocument.recompute()
 		# #Gui.SendMsgToActiveView("ViewFit")
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 		return
 
 	def IsActive(self):
@@ -405,20 +407,21 @@ class Hexahedron:
 		for i in range(4):
 			vertexes_side = [vertexes_bottom[i], vertexes_bottom[i+1],
 							 vertexes_top[i+1], vertexes_top[i], vertexes_bottom[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
-		polygon_bottom = Part.makePolygon(vertexes_bottom)
-		faces.append(Part.Face(polygon_bottom))
+		polygon_bottom = _part.makePolygon(vertexes_bottom)
+		faces.append(_part.Face(polygon_bottom))
 
-		polygon_top = Part.makePolygon(vertexes_top)
-		faces.append(Part.Face(polygon_top))
+		polygon_top = _part.makePolygon(vertexes_top)
+		faces.append(_part.Face(polygon_top))
 
-		shell = Part.makeShell(faces)
-		solid = Part.makeSolid(shell)
+		shell = _part.makeShell(faces)
+		solid = _part.makeSolid(shell)
 		obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class HexahedronCommand:
@@ -437,8 +440,9 @@ class HexahedronCommand:
 		ViewProviderBox(obj.ViewObject, "Hexahedron")
 		# App.ActiveDocument.recompute()
 		# #Gui.SendMsgToActiveView("ViewFit")
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 		return
 
 	def IsActive(self):
@@ -482,20 +486,21 @@ class Octahedron:
 		for i in range(4):
 			vertexes_side = [
 				vertexes_middle[i], vertexes_middle[i+1], vertexes_top[0], vertexes_middle[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
 		for i in range(4):
 			vertexes_side = [vertexes_middle[i], vertexes_middle[i+1],
 							 vertexes_bottom[0], vertexes_middle[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
-		shell = Part.makeShell(faces)
-		solid = Part.makeSolid(shell)
+		shell = _part.makeShell(faces)
+		solid = _part.makeSolid(shell)
 		obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class OctahedronCommand:
@@ -514,8 +519,9 @@ class OctahedronCommand:
 		ViewProviderBox(obj.ViewObject, "Octahedron")
 		# App.ActiveDocument.recompute()
 		# #Gui.SendMsgToActiveView("ViewFit")
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 		return
 
 	def IsActive(self):
@@ -579,32 +585,33 @@ class Dodecahedron:
 		vertexes_top = horizontal_regular_polygon_vertexes(
 			5, radius1, r, math.pi/5)
 
-		polygon_bottom = Part.makePolygon(vertexes_bottom)
-		face_bottom = Part.Face(polygon_bottom)
+		polygon_bottom = _part.makePolygon(vertexes_bottom)
+		face_bottom = _part.Face(polygon_bottom)
 		faces.append(face_bottom)
 
-		polygon_top = Part.makePolygon(vertexes_top)
-		face_top = Part.Face(polygon_top)
+		polygon_top = _part.makePolygon(vertexes_top)
+		face_top = _part.Face(polygon_top)
 		faces.append(face_top)
 
 		for i in range(5):
 			vertexes_side = [vertexes_bottom[i], vertexes_bottom[i+1],
 							 vertexes_low[i+1], vertexes_high[i], vertexes_low[i], vertexes_bottom[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
 		for i in range(5):
 			#vertexes_side=[vertexes_top[i],vertexes_top[i+1],vertexes_high[i+1],vertexes_high2[i], vertexes_high[i],vertexes_top[i] ]
 			vertexes_side = [vertexes_top[i], vertexes_top[i+1], vertexes_high[i+1],
 							 vertexes_low[i+1], vertexes_high[i], vertexes_top[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
-		shell = Part.makeShell(faces)
-		solid = Part.makeSolid(shell)
+		shell = _part.makeShell(faces)
+		solid = _part.makeSolid(shell)
 		obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class DodecahedronCommand:
@@ -622,8 +629,9 @@ class DodecahedronCommand:
 		ViewProviderBox(obj.ViewObject, "Dodecahedron")
 		# App.ActiveDocument.recompute()
 		# #Gui.SendMsgToActiveView("ViewFit")
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 		return
 
 	def IsActive(self):
@@ -683,30 +691,31 @@ class Icosahedron:
 		for i in range(5):
 			vertexes_side = [vertex_bottom, vertexes_low[i],
 							 vertexes_low[i+1], vertex_bottom]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
 		for i in range(5):
 			vertexes_side = [vertexes_low[i], vertexes_low[i+1],
 							 vertexes_high[i], vertexes_low[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 			vertexes_side = [vertexes_high[i], vertexes_high[i+1],
 							 vertexes_low[i+1], vertexes_high[i]]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
 		for i in range(5):
 			vertexes_side = [vertex_top, vertexes_high[i],
 							 vertexes_high[i+1], vertex_top]
-			polygon_side = Part.makePolygon(vertexes_side)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes_side)
+			faces.append(_part.Face(polygon_side))
 
-		shell = Part.makeShell(faces)
-		solid = Part.makeSolid(shell)
+		shell = _part.makeShell(faces)
+		solid = _part.makeSolid(shell)
 		obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class IcosahedronCommand:
@@ -724,8 +733,9 @@ class IcosahedronCommand:
 		ViewProviderBox(obj.ViewObject, "Icosahedron")
 		# App.ActiveDocument.recompute()
 		# #Gui.SendMsgToActiveView("ViewFit")
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 		return
 
 	def IsActive(self):
@@ -791,15 +801,15 @@ class Icosahedron_truncated:
 			new_vertex = ((vertex_bottom[0]+vertexes_low[i][0])/3, (vertex_bottom[1] +
 																	vertexes_low[i][1])/3, vertex_bottom[2]-(vertex_bottom[2]-vertexes_low[i][2])/3)
 			vertexes_bottom.append(new_vertex)
-		polygon_side = Part.makePolygon(vertexes_bottom)
-		faces.append(Part.Face(polygon_side))
+		polygon_side = _part.makePolygon(vertexes_bottom)
+		faces.append(_part.Face(polygon_side))
 
 		for i in range(6):
 			new_vertex = ((vertex_top[0]+vertexes_high[i][0])/3, (vertex_top[1] +
 																  vertexes_high[i][1])/3, vertex_top[2]-(vertex_top[2]-vertexes_high[i][2])/3)
 			vertexes_top.append(new_vertex)
-		polygon_side = Part.makePolygon(vertexes_top)
-		faces.append(Part.Face(polygon_side))
+		polygon_side = _part.makePolygon(vertexes_top)
+		faces.append(_part.Face(polygon_side))
 
 		pg6_bottom = []
 		for i in range(5):
@@ -816,8 +826,8 @@ class Icosahedron_truncated:
 			vertexes = [vertex1, vertex2, vertex3,
 						vertex4, vertex5, vertex6, vertex1]
 			pg6_bottom.append(vertexes)
-			polygon_side = Part.makePolygon(vertexes)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes)
+			faces.append(_part.Face(polygon_side))
 
 		pg6_top = []
 		for i in range(5):
@@ -834,8 +844,8 @@ class Icosahedron_truncated:
 			vertexes = [vertex1, vertex2, vertex3,
 						vertex4, vertex5, vertex6, vertex1]
 			pg6_top.append(vertexes)
-			polygon_side = Part.makePolygon(vertexes)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes)
+			faces.append(_part.Face(polygon_side))
 
 		pg6_low = []
 		for i in range(5):
@@ -852,8 +862,8 @@ class Icosahedron_truncated:
 			vertexes = [vertex1, vertex2, vertex3,
 						vertex4, vertex5, vertex6, vertex1]
 			pg6_low.append(vertexes)
-			polygon_side = Part.makePolygon(vertexes)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes)
+			faces.append(_part.Face(polygon_side))
 
 		pg6_high = []
 		for i in range(5):
@@ -866,8 +876,8 @@ class Icosahedron_truncated:
 			vertexes = [vertex1, vertex2, vertex3,
 						vertex4, vertex5, vertex6, vertex1]
 			pg6_high.append(vertexes)
-			polygon_side = Part.makePolygon(vertexes)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes)
+			faces.append(_part.Face(polygon_side))
 
 		for i in range(5):
 			vertex1 = pg6_top[i][4]
@@ -876,8 +886,8 @@ class Icosahedron_truncated:
 			vertex4 = pg6_high[i-1][5]
 			vertex5 = pg6_low[i-1][4]
 			vertexes = [vertex1, vertex2, vertex3, vertex4, vertex5, vertex1]
-			polygon_side = Part.makePolygon(vertexes)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes)
+			faces.append(_part.Face(polygon_side))
 
 		for i in range(5):
 			vertex1 = pg6_bottom[i][4]
@@ -886,14 +896,15 @@ class Icosahedron_truncated:
 			vertex4 = pg6_low[i-1][5]
 			vertex5 = pg6_high[i][4]
 			vertexes = [vertex1, vertex2, vertex3, vertex4, vertex5, vertex1]
-			polygon_side = Part.makePolygon(vertexes)
-			faces.append(Part.Face(polygon_side))
+			polygon_side = _part.makePolygon(vertexes)
+			faces.append(_part.Face(polygon_side))
 
-		shell = Part.makeShell(faces)
-		solid = Part.makeSolid(shell)
+		shell = _part.makeShell(faces)
+		solid = _part.makeSolid(shell)
 		obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class IcosahedronTrCommand:
@@ -911,8 +922,9 @@ class IcosahedronTrCommand:
 		ViewProviderBox(obj.ViewObject, "Icosahedron_trunc")
 		# App.ActiveDocument.recompute()
 		# #Gui.SendMsgToActiveView("ViewFit")
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 		return
 
 	def IsActive(self):
@@ -1000,9 +1012,9 @@ class Geodesic_sphere:
 								   ].normalize().multiply(self.radiusvalue)
 				vertex3x = icosaPt[str(level*10+12+point)
 								   ].normalize().multiply(self.radiusvalue)
-				polygon = Part.makePolygon(
+				polygon = _part.makePolygon(
 					[vertex1x, vertex2x, vertex3x, vertex1x])
-				faces.append(Part.Face(polygon))
+				faces.append(_part.Face(polygon))
 
 			for point in range(level):
 				vertex1x = icosaPt[str(level*10+1+point)
@@ -1011,9 +1023,9 @@ class Geodesic_sphere:
 								   ].normalize().multiply(self.radiusvalue)
 				vertex3x = icosaPt[str(level*10+12+point)
 								   ].normalize().multiply(self.radiusvalue)
-				polygon = Part.makePolygon(
+				polygon = _part.makePolygon(
 					[vertex1x, vertex2x, vertex3x, vertex1x])
-				faces.append(Part.Face(polygon))
+				faces.append(_part.Face(polygon))
 
 		return faces
 
@@ -1070,9 +1082,12 @@ class Geodesic_sphere:
 			faces = self.geodesic_divide_triangles(
 				vertex_top, vertexes_high[i], vertexes_high[i+1], faces)
 
-		shell = Part.makeShell(faces)
-		solid = Part.makeSolid(shell)
+		shell = _part.makeShell(faces)
+		solid = _part.makeSolid(shell)
 		obj.Shape = solid
+		App.ActiveDocument.recompute()
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 
 
 class GeodesicSphereCommand:
@@ -1089,8 +1104,8 @@ class GeodesicSphereCommand:
 		# obj.ViewObject.Proxy=0
 		ViewProviderBox(obj.ViewObject, "Geodesic sphere")
 		App.ActiveDocument.recompute()
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, App.ActiveDocument.ActiveObject)
+		v = Gui.ActiveDocument.ActiveView
+		faced.PartMover(obj,v,App.ActiveDocument.ActiveObject,deleteOnEscape = True)
 		#Gui.SendMsgToActiveView("ViewFit")
 		return
 
