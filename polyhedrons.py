@@ -274,8 +274,10 @@ class PyramidCommand:
         ViewProviderBox(obj.ViewObject, "Pyramid")
         # obj.ViewObject.Proxy=0
         App.ActiveDocument.recompute()
-        Gui.SendMsgToActiveView("ViewFit")
-        return
+        #Gui.SendMsgToActiveView("ViewFit")
+   		v = Gui.ActiveDocument.activeView()
+		faced.PartMover(v,App.ActiveDocument.ActiveObject)
+        print("wrong module")
 
     def IsActive(self):
         if App.ActiveDocument == None:
@@ -335,7 +337,7 @@ class Tetrahedron:
         solid = Part.makeSolid(shell)
         obj.Shape = solid
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
 
 
 class TetrahedronCommand:
@@ -353,9 +355,9 @@ class TetrahedronCommand:
         # obj.ViewObject.Proxy=0
         ViewProviderBox(obj.ViewObject, "Tetrahedron")
         # App.ActiveDocument.recompute()
-        # Gui.SendMsgToActiveView("ViewFit")
+        # #Gui.SendMsgToActiveView("ViewFit")
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
         return
 
     def IsActive(self):
@@ -416,7 +418,7 @@ class Hexahedron:
         solid = Part.makeSolid(shell)
         obj.Shape = solid
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
 
 
 class HexahedronCommand:
@@ -434,9 +436,9 @@ class HexahedronCommand:
         # obj.ViewObject.Proxy=0
         ViewProviderBox(obj.ViewObject, "Hexahedron")
         # App.ActiveDocument.recompute()
-        # Gui.SendMsgToActiveView("ViewFit")
+        # #Gui.SendMsgToActiveView("ViewFit")
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
         return
 
     def IsActive(self):
@@ -493,7 +495,7 @@ class Octahedron:
         solid = Part.makeSolid(shell)
         obj.Shape = solid
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
 
 
 class OctahedronCommand:
@@ -511,9 +513,9 @@ class OctahedronCommand:
         # obj.ViewObject.Proxy=0
         ViewProviderBox(obj.ViewObject, "Octahedron")
         # App.ActiveDocument.recompute()
-        # Gui.SendMsgToActiveView("ViewFit")
+        # #Gui.SendMsgToActiveView("ViewFit")
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
         return
 
     def IsActive(self):
@@ -602,7 +604,7 @@ class Dodecahedron:
         solid = Part.makeSolid(shell)
         obj.Shape = solid
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
 
 
 class DodecahedronCommand:
@@ -619,9 +621,9 @@ class DodecahedronCommand:
         # obj.ViewObject.Proxy=0
         ViewProviderBox(obj.ViewObject, "Dodecahedron")
         # App.ActiveDocument.recompute()
-        # Gui.SendMsgToActiveView("ViewFit")
+        # #Gui.SendMsgToActiveView("ViewFit")
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
         return
 
     def IsActive(self):
@@ -703,8 +705,8 @@ class Icosahedron:
         shell = Part.makeShell(faces)
         solid = Part.makeSolid(shell)
         obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, obj)
+        v = Gui.ActiveDocument.activeView()
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
 
 
 class IcosahedronCommand:
@@ -721,10 +723,10 @@ class IcosahedronCommand:
         # obj.ViewObject.Proxy=0
         ViewProviderBox(obj.ViewObject, "Icosahedron")
         # App.ActiveDocument.recompute()
-        # Gui.SendMsgToActiveView("ViewFit")
-    	v = Gui.ActiveDocument.activeView()
-    	faced.PartMover(v, obj)
-    	return
+        # #Gui.SendMsgToActiveView("ViewFit")
+        v = Gui.ActiveDocument.activeView()
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
+        return
 
     def IsActive(self):
         if App.ActiveDocument == None:
@@ -890,8 +892,8 @@ class Icosahedron_truncated:
         shell = Part.makeShell(faces)
         solid = Part.makeSolid(shell)
         obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v, obj)
+        v = Gui.ActiveDocument.activeView()
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
 
 
 class IcosahedronTrCommand:
@@ -908,9 +910,9 @@ class IcosahedronTrCommand:
         # obj.ViewObject.Proxy=0
         ViewProviderBox(obj.ViewObject, "Icosahedron_trunc")
         # App.ActiveDocument.recompute()
-        # Gui.SendMsgToActiveView("ViewFit")
+        # #Gui.SendMsgToActiveView("ViewFit")
         v = Gui.ActiveDocument.activeView()
-        faced.PartMover(v, obj)
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
         return
 
     def IsActive(self):
@@ -1087,7 +1089,9 @@ class GeodesicSphereCommand:
         # obj.ViewObject.Proxy=0
         ViewProviderBox(obj.ViewObject, "Geodesic sphere")
         App.ActiveDocument.recompute()
-        Gui.SendMsgToActiveView("ViewFit")
+        v = Gui.ActiveDocument.activeView()
+        faced.PartMover(v, App.ActiveDocument.ActiveObject)
+        #Gui.SendMsgToActiveView("ViewFit")
         return
 
     def IsActive(self):
