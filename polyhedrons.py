@@ -254,8 +254,8 @@ class Pyramid:
             shell = Part.makeShell(faces)
             solid = Part.makeSolid(shell)
             obj.Shape = solid
-		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v,App.ActiveDocument.ActiveObject)
+        v = Gui.ActiveDocument.activeView()
+        faced.PartMover(v,App.ActiveDocument.ActiveObject)
 
 
 class PyramidCommand:
@@ -275,8 +275,8 @@ class PyramidCommand:
         # obj.ViewObject.Proxy=0
         App.ActiveDocument.recompute()
         #Gui.SendMsgToActiveView("ViewFit")
-   		v = Gui.ActiveDocument.activeView()
-		faced.PartMover(v,App.ActiveDocument.ActiveObject)
+        v = Gui.ActiveDocument.activeView()
+        faced.PartMover(v,App.ActiveDocument.ActiveObject)
         print("wrong module")
 
     def IsActive(self):
