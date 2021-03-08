@@ -55,8 +55,7 @@ import FreeCAD as App
 import FreeCADGui as Gui
 import Part as _part
 import math
-import sys
-import os
+import sys, os
 from FreeCAD import Base
 import Design456Init
 import FACE_D as faced
@@ -84,7 +83,7 @@ def horizontal_regular_polygon_vertexes(sidescount, radius, z, startangle=0):
         return
 
 
-# anglez in degrees
+# angle in degrees
 def horizontal_regular_pyramid_vertexes(sidescount, radius, z, anglez=0):
     try:
         vertexes = []
@@ -275,8 +274,7 @@ class Pyramid:
                 shell = _part.makeShell(faces)
                 solid = _part.makeSolid(shell)
                 obj.Shape = solid
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+
         except Exception as err:
             App.Console.PrintError("'Class Pyramid' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -303,7 +301,7 @@ class PyramidCommand:
             ViewProviderBox(newObj.ViewObject, "Pyramid")
             App.ActiveDocument.recompute()
             v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+            faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
         except Exception as err:
             App.Console.PrintError("'PyramidCommand' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -363,9 +361,6 @@ class Tetrahedron:
             shell = _part.makeShell(faces)
             solid = _part.makeSolid(shell)
             obj.Shape = solid
-            App.ActiveDocument.recompute()
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
 
         except Exception as err:
             App.Console.PrintError("'PyramidCommand' Failed. "
@@ -392,7 +387,7 @@ class TetrahedronCommand:
             ViewProviderBox(newObj.ViewObject, "Tetrahedron")
             App.ActiveDocument.recompute()
             v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+            faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
         except Exception as err:
             App.Console.PrintError("'TetrahedronCommand' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -453,9 +448,6 @@ class Hexahedron:
             shell = _part.makeShell(faces)
             solid = _part.makeSolid(shell)
             obj.Shape = solid
-            App.ActiveDocument.recompute()
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
         except Exception as err:
             App.Console.PrintError("'Hexahedron' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -480,7 +472,7 @@ class HexahedronCommand:
         ViewProviderBox(newObj.ViewObject, "Hexahedron")
         App.ActiveDocument.recompute()
         v = Gui.ActiveDocument.ActiveView
-        #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+        faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
 
 
 Gui.addCommand('Hexahedron', HexahedronCommand())
@@ -530,9 +522,7 @@ class Octahedron:
             shell = _part.makeShell(faces)
             solid = _part.makeSolid(shell)
             obj.Shape = solid
-            App.ActiveDocument.recompute()
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+
         except Exception as err:
             App.Console.PrintError("'Octahedron' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -558,7 +548,7 @@ class OctahedronCommand:
             ViewProviderBox(newObj.ViewObject, "Octahedron")
             App.ActiveDocument.recompute()
             v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+            faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
         except Exception as err:
             App.Console.PrintError("'OctahedronCommand' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -646,9 +636,7 @@ class Dodecahedron:
             shell = _part.makeShell(faces)
             solid = _part.makeSolid(shell)
             obj.Shape = solid
-            App.ActiveDocument.recompute()
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+
         except Exception as err:
             App.Console.PrintError("'Dodecahedron' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -671,7 +659,7 @@ class DodecahedronCommand:
         ViewProviderBox(newObj.ViewObject, "Dodecahedron")
         App.ActiveDocument.recompute()
         v = Gui.ActiveDocument.ActiveView
-        #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+        faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
 
 
 Gui.addCommand('Dodecahedron', DodecahedronCommand())
@@ -747,9 +735,7 @@ class Icosahedron:
             shell = _part.makeShell(faces)
             solid = _part.makeSolid(shell)
             obj.Shape = solid
-            App.ActiveDocument.recompute()
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+
         except Exception as err:
             App.Console.PrintError("'Icosahedron' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -771,11 +757,11 @@ class IcosahedronCommand:
             "Part::FeaturePython", "Icosahedron")
         Icosahedron(newObj)
 
-        ViewProviderBox(obj.ViewObject, "Icosahedron")
+        ViewProviderBox(newObj.ViewObject, "Icosahedron")
 
         App.ActiveDocument.recompute()
         v = Gui.ActiveDocument.ActiveView
-        #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+        faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
 
 
 Gui.addCommand('Icosahedron', IcosahedronCommand())
@@ -935,9 +921,7 @@ class Icosahedron_truncated:
             shell = _part.makeShell(faces)
             solid = _part.makeSolid(shell)
             obj.Shape = solid
-            App.ActiveDocument.recompute()
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+
         except Exception as err:
             App.Console.PrintError("'Icosahedron_truncated' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -962,7 +946,7 @@ class IcosahedronTrCommand:
 
         App.ActiveDocument.recompute()
         v = Gui.ActiveDocument.ActiveView
-        #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+        faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
 
 
 Gui.addCommand('Icosahedron_truncated', IcosahedronTrCommand())
@@ -985,7 +969,7 @@ def geodesic_radius2side(radius, div):
 
 
 def geodesic_side2radius(side, div):
-    # approximative experience values!	Not all sides are equal!
+    # approximatily experience values!	Not all sides are equal!
     dictsides = {"2": 618.034, "3": 412.41, "4": 312.87, "5": 245.09,
                  "6": 205.91, "7": 173.53, "8": 152.96, "9": 135.96, "10": 121.55}
     div = int(round(div))
@@ -1124,9 +1108,7 @@ class Geodesic_sphere:
             shell = _part.makeShell(faces)
             solid = _part.makeSolid(shell)
             obj.Shape = solid
-            App.ActiveDocument.recompute()
-            v = Gui.ActiveDocument.ActiveView
-            #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+
         except Exception as err:
             App.Console.PrintError("'geodesic_divide_triangles' Failed. "
                                    "{err}\n".format(err=str(err)))
@@ -1150,6 +1132,6 @@ class GeodesicSphereCommand:
         ViewProviderBox(newObj.ViewObject, "Geodesic sphere")
         App.ActiveDocument.recompute()
         v = Gui.ActiveDocument.ActiveView
-        #faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
+        faced.PartMover(v, newObj, deleteOnEscape=True)    #---<  This line crashes Freecad while it works for other primatives 
 
 Gui.addCommand('Geodesic_sphere', GeodesicSphereCommand())
